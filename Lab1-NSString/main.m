@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NSString+Uppercase.h"
+#import "NSString+Lowercase.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -32,6 +33,9 @@ int main(int argc, const char * argv[]) {
         switch (intputOperationNumber) {
             case 1:
                 inputString = [inputString stringToUppercase];
+                break;
+            case 2:
+                inputString = [inputString stringToLowercase];
                 break;
                 
             default:
