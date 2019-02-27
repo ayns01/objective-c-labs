@@ -7,9 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-//#import "NSString+Uppercase.h"
-//#import "NSString+Lowercase.h"
-//#import "Numberize.h"
 
 Boolean isQuestionMark(NSString *inputstring) {
     NSUInteger lastCharIndex = [inputstring length] - 1;
