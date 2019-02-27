@@ -7,8 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "NSString+Uppercase.h"
-#import "NSString+Lowercase.h"
+//#import "NSString+Uppercase.h"
+//#import "NSString+Lowercase.h"
+//#import "Numberize.h"
+
+Boolean isQuestionMark(NSString *inputstring) {
+    NSUInteger lastCharIndex = [inputstring length] - 1;
+    char lastChar = [inputstring characterAtIndex:lastCharIndex];
+    return (lastChar == '?');
+}
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -32,18 +39,35 @@ int main(int argc, const char * argv[]) {
         
         switch (intputOperationNumber) {
             case 1:
-                inputString = [inputString stringToUppercase];
+                inputString = [inputString uppercaseString];
+                NSLog(@"Uppercase is: %@", inputString);
                 break;
             case 2:
-                inputString = [inputString stringToLowercase];
+                inputString = [inputString lowercaseString];
+                NSLog(@"Lowercase is: %@", inputString);
+                break;
+            case 3:
+                // TO DO
+                NSLog(@"Have to implement");
+                NSLog(@"Input was: %@", inputString);
+                break;
+            case 4:
+                inputString = [inputString stringByAppendingString:@", eh?"];
+                NSLog(@"Canadianize is: %@", inputString);
+                break;
+            case 5:
+                // TO DO
+                NSLog(@"Have to implement");
+                NSLog(@"Input was: %@", inputString);
+                break;
+            case 6:
+                inputString = [inputString stringByReplacingOccurrencesOfString:@" " withString:@"-"];
+                NSLog(@"DeSpaceIt is: %@", inputString);
                 break;
                 
             default:
                 break;
         }
-        
-        // print NSString object
-        NSLog(@"Input was: %@", inputString);
     }
     return 0;
 }
