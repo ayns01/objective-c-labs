@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface ScoreKeeper : NSObject
 @property int rightAnswer;
 @property int wrongAnswer;
-@property int percentage;
+@property float percentage;
 
 - (void)count:(BOOL)isRight;
 - (void)calcPercent;

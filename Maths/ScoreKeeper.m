@@ -29,6 +29,6 @@
 }
 
 - (void)calcPercent {
-    _percentage = (100 / (_wrongAnswer + _rightAnswer) * _rightAnswer);
+    _percentage = ((float)_rightAnswer / (_wrongAnswer + _rightAnswer)) * 100;
 }
 @end

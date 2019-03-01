@@ -7,34 +7,53 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AdditionQuestion.h"
+#import "Question.h"
 #import "InputHandler.h"
 #import "ScoreKeeper.h"
+#import "QuestionManager.h"
+#import "QuestionFactory.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
+        
+        NSLog(@"Maths!\n\n\n");
+        NSString *right = @"Right!\n";
+        NSString *wrong = @"Wrong!\n";
         ScoreKeeper *score = [[ScoreKeeper alloc] init];
+        InputHandler *inputHandler = [[InputHandler alloc] init];
+        QuestionManager *questionManager = [[QuestionManager alloc] init];
+        QuestionFactory *questionFactory = [[QuestionFactory alloc] init];
         NSLog(@"If you wanna terminate, write \"quit\"");
+        
         while(1)
         {
-            AdditionQuestion *q = [[AdditionQuestion alloc] init];
-            NSLog(@"%@", [q question]);
-            NSString *result = [InputHandler getInput];
+            Question *q = [[Question alloc] init];
+            NSLog(@"%@", [q startTime]);
+            [questionManager.questions addObject:q];
+            int whichClass = arc4random_uniform((uint32_t)(4));
+            NSString *namesOfQuestionClass = [questionFactory.questionSubclassNames objectAtIndex:whichClass];
+            Question *subclassOfQuestion = [[NSClassFromString(namesOfQuestionClass)alloc]init];
+            NSLog(@"%@", [subclassOfQuestion question]);
+            NSString *result = [inputHandler getInput];
+            [q answer];
+            
             NSInteger intputNumber = [result intValue];
             
-            if (intputNumber == [q answer]) {
-                NSLog(@"Right!");
+            if (intputNumber == [subclassOfQuestion answer]) {
+                NSLog(@"%@", right);
                 [score count:YES];
             }else if([result isEqualToString:@"quit"]) {
                 [score calcPercent];
                 break;
             }else {
-                NSLog(@"Wrong!");
+                NSLog(@"%@", wrong);
                 [score count:NO];
             }
+            NSLog(@"END TIME: %@", [q endTime]);
             
+            NSLog(@"score: %d right, %d wrong ---- %.2f%%", [score rightAnswer], [score wrongAnswer], [score percentage]);
+            NSLog(@"%@", [questionManager timeOutput]);
         }
-        NSLog(@"score: %dright, %dwrong ---- %d%%", [score rightAnswer], [score wrongAnswer], [score percentage]);
     }
     return 0;
 }

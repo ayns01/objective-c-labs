@@ -7,10 +7,10 @@
 //
 
 #import "InputHandler.h"
-#import "AdditionQuestion.h"
+#import "Question.h"
 
 @implementation InputHandler
-+ (NSString *)getInput {
+- (NSString *)getInput {
     char inputChars[100];
     printf("Input an answer: ");
     fgets(inputChars, 100, stdin);
