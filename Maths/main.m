@@ -42,12 +42,13 @@ int main(int argc, const char * argv[]) {
             if (intputNumber == [subclassOfQuestion answer]) {
                 NSLog(@"%@", right);
                 [score count:YES];
-            }else if([result isEqualToString:@"quit"]) {
                 [score calcPercent];
+            }else if([result isEqualToString:@"quit"]) {
                 break;
             }else {
                 NSLog(@"%@", wrong);
                 [score count:NO];
+                [score calcPercent];
             }
             NSLog(@"END TIME: %@", [q endTime]);
             
