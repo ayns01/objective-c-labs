@@ -9,11 +9,16 @@
 #import <Foundation/Foundation.h>
 
 #import "Kitchen.h"
+#import "ManagerWhoHateAnchobies.h"
+#import "CheeryManager.h"
 
 int main(int argc, const char * argv[])
 {
     
     @autoreleasepool {
+        
+        ManagerWhoHateAnchobies *anchobiesManager = [[ManagerWhoHateAnchobies alloc] init];
+        CheeryManager *cheeryManager = [[CheeryManager alloc] init];
         
         NSLog(@"Please pick your pizza size and toppings:");
         
@@ -39,7 +44,7 @@ int main(int argc, const char * argv[])
             
             NSMutableArray *toppingsCopy = [commandWords mutableCopy];
             [toppingsCopy removeObjectAtIndex:0];
-            NSArray *toppings = toppingsCopy;
+            NSArray *toppings = [toppingsCopy copy];
             
             if([[commandWordsForSize lowercaseString] isEqualToString:@"pepperoni"]) {
                 size = Large;
