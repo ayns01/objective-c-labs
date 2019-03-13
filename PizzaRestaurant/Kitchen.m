@@ -12,19 +12,31 @@
 
 - (Pizza *)makePizzaWithSize:(PizzaSize)size toppings:(NSArray *)toppings
 {
-    // delegate instanceが kitchen:shouldMakePizzaOfSize:andToppings: メソッドを実装しているか確認します。
-    if ([self.delegate respondsToSelector:@selector(kitchen:shouldMakePizzaOfSize:andToppings:)]) {
+//    if ([self.delegate respondsToSelector:@selector(kitchen:shouldMakePizzaOfSize:andToppings:)]) {
         // kitchen:shouldMakePizzaOfSize:andToppings: が実装されているので、処理をdelegate instanceに委譲します。
         if([self.delegate kitchen:self shouldMakePizzaOfSize:size andToppings:toppings] == NO) {
-            NSLog(@"We don't make the pizza...");
+            NSLog(@"We'll remove anchobies from your ordered pizza!!");
+            NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:toppings];
+            [mutableArray removeObject:@"anchobies"];
+            toppings = [mutableArray copy];
         }
-    }
+//    }
     
-    if ([self.delegate respondsToSelector:@selector(kitchenShouldUpgradeOrder:)]) {
-        if([self.delegate kitchenShouldUpgradeOrder:self] == YES) {
+//    if ([self.delegate respondsToSelector:@selector(kitchenShouldUpgradeOrder:)]) {
+        if([self.delegate kitchenShouldUpgradeOrder:self]) {
             size = Large;
         }
+//    }
+   
+    Pizza *pizza = [[Pizza alloc] initWithSize:size Toppings:toppings];
+    
+    // delegate instanceがkitchenDidMakePizza:メソッドを実装しているか確認します。
+    if ([self.delegate respondsToSelector:@selector(kitchenDidMakePizza:)]) {
+        [self.delegate kitchenDidMakePizza:pizza];
     }
+    
+    return pizza;
+    
 }
 
 

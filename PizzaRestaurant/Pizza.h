@@ -25,7 +25,7 @@ typedef enum : NSInteger {
 
 - (NSString*)formatTypeToString:(PizzaSize)pizzaSizeFormat;
 
-+ (Pizza *)largePepperoni;
+//+ (Pizza *)largePepperoni;
 
 @end
 

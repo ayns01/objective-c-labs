@@ -20,13 +20,11 @@ int main(int argc, const char * argv[])
         ManagerWhoHateAnchobies *anchobiesManager = [[ManagerWhoHateAnchobies alloc] init];
         CheeryManager *cheeryManager = [[CheeryManager alloc] init];
         
-        NSLog(@"Please pick your pizza size and toppings:");
-        
         Kitchen *restaurantKitchen = [Kitchen new];
         
         while (TRUE) {
             // Loop forever
-            
+            NSLog(@"Please pick your pizza size and toppings:");
             NSLog(@"> ");
             char str[100];
             fgets (str, 100, stdin);
@@ -57,8 +55,25 @@ int main(int argc, const char * argv[])
                 size = Large;
             }
             
+            NSLog(@"Please slelect pizza restauraunt: \"domino\" or \"copin\"");
+            NSLog(@"> ");
+            char str2[100];
+            fgets (str2, 100, stdin);
+            
+            NSString *inputString2 = [[NSString alloc] initWithUTF8String:str2];
+            inputString2 = [inputString2 stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            
+            NSLog(@"Input was %@", inputString2);
+            
+            if ([[inputString2 lowercaseString] isEqualToString:@"domino"]) {
+                restaurantKitchen.delegate = anchobiesManager;
+            }else if([[inputString2 lowercaseString] isEqualToString:@"copin"]) {
+                restaurantKitchen.delegate = cheeryManager;
+            }
+            
             // And then send some message to the kitchen...
             [restaurantKitchen makePizzaWithSize:size toppings:toppings];
+            
         }
         
     }

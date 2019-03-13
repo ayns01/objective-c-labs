@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Kitchen.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CheeryManager : NSObject
+@interface CheeryManager : NSObject<KitchenDelegate>
 
 @end
 

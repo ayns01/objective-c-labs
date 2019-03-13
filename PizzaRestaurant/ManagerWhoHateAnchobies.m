@@ -23,7 +23,7 @@
 }
 
 - (void)kitchenDidMakePizza:(Pizza *)pizza {
-    NSLog(@"This pizza doesn't contain any of anchobies!");
+    NSLog(@"From chef at Domino: It's your pizza!\n Size:%@\nToppings%@", [pizza formatTypeToString:pizza.size], pizza.toppings);
 }
 
 @end
